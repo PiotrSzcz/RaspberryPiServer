@@ -33,8 +33,8 @@ public class FileController {
                 .body(new ByteArrayResource(file.getData()));
     }
 
-    @GetMapping("/list")
+    /*@GetMapping("/list")
     public ResponseEntity getList(){
         return ResponseEntity.ok().body(fileService.getFileList());
-    }
+    }*/
 }

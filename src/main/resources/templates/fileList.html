@@ -1,0 +1,13 @@
+<!DOCTYPE html>
+<html xmlns:th="https://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8">
+  <title>FileList</title>
+</head>
+<body>
+  <tr th:each="file: ${files}">
+    <a th:href="@{'download/'+${file.getId}}"> <td th:text="${file.getFilename}"/> </a>
+    <br>
+  </tr>
+</body>
+</html>

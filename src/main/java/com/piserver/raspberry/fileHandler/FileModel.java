@@ -38,6 +38,8 @@ public class FileModel {
     public FileModel() {
     }
 
+    public String idToString(){ return id.toString(); }
+
     public Long getId() {
         return id;
     }
