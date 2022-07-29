@@ -20,10 +20,6 @@ public class FileController {
 
     @PostMapping
     public ResponseEntity fileToUpload(@RequestParam("file") MultipartFile file) throws IOException {
-        String downloadURI = ServletUriComponentsBuilder
-                .fromCurrentContextPath()
-                .path("/download/")
-                .toUriString();
         fileService.storeFile(file);
         return ResponseEntity.ok().body("File saved: " + file.getOriginalFilename());
     }
