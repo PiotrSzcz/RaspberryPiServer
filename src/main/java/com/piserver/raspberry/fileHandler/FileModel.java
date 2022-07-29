@@ -69,5 +69,14 @@ public class FileModel {
     public void setData(byte[] data) {
         this.data = data;
     }
+
+    @Override
+    public String toString() {
+        return "File{" +
+                "id=" + id +
+                ", filename='" + filename + '\'' +
+                ", filetype='" + filetype + '\'' +
+                '}';
+    }
 }
 

@@ -19,6 +19,10 @@ public class FileService {
         return fileRepo.save(fileToStore);
     }
 
+    public FileModel downloadFile(Long id) throws Exception {
+        return fileRepo.findById(id).orElseThrow(()->new Exception("File not found"));
+    }
+
     public List<FileModel> getFileList(){
         return fileRepo.findAll();
     }
