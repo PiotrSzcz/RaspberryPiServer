@@ -15,32 +15,36 @@ public class FileService {
     @Autowired
     private IFileRepo fileRepo;
 
-    public FileModel storeFileInDB(MultipartFile file) throws IOException {
-        String filename = file.getOriginalFilename();
-        FileModel fileToStore = new FileModel(filename,
-                                    file.getContentType(),
-                                    file.getBytes());
-        return fileRepo.save(fileToStore);
-    }
-
     public FileModel findFile(Long id) throws Exception {
         return fileRepo.findById(id).orElseThrow(()->new Exception("File not found"));
     }
 
-    public FileModel saveInformation(MultipartFile file, String filePath){
+    public void storeFileInDB(MultipartFile file) throws IOException {
+        String filename = file.getOriginalFilename();
+        FileModel fileToStore = new FileModel(filename,
+                                    file.getContentType(),
+                                    file.getBytes());
+        fileRepo.save(fileToStore);
+    }
+
+    public void saveInformation(MultipartFile file, String filePath){
         FileModel fileInfo = new FileModel(
                 file.getOriginalFilename(),
                 file.getContentType(),
                 filePath);
-        return fileRepo.save(fileInfo);
+        fileRepo.save(fileInfo);
     }
 
     public Resource getFileAsResource(Long id){
-        Path fileDir = Path.of(fileRepo.findById(id).get().getFilePath());
-        try {
-            return new UrlResource(fileDir.toUri());
-        } catch (MalformedURLException e) {
-            throw new RuntimeException(e);
+        if(fileRepo.findById(id).isPresent()){
+            Path fileDir = Path.of(fileRepo.findById(id).get().getFilePath());
+            try {
+                return new UrlResource(fileDir.toUri());
+            } catch (MalformedURLException e) {
+                throw new RuntimeException(e);
+            }
+        }else {
+            throw new RuntimeException();
         }
     }
 

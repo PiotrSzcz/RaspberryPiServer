@@ -22,7 +22,7 @@ import static java.time.format.DateTimeFormatter.ISO_LOCAL_TIME;
 @RequestMapping(path = "/file")
 public class FileController {
 
-    private String postPath = "/Users/piotrek/Desktop/Programy/inzynierka?/raspberry/savedFiles/";
+    private final String postPath = "/Users/piotrek/Desktop/Programy/inzynierka?/raspberry/savedFiles/";
     @Autowired
     private FileService fileService;
 
