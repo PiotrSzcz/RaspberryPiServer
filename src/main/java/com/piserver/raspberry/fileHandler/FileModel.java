@@ -19,14 +19,14 @@ public class FileModel {
     private Long id;
     private String filename;
     private String filetype;
+    private String filePath;
     @Lob
     private byte[] data;
 
-    public FileModel(Long id, String filename, String filetype, byte[] data) {
-        this.id = id;
+    public FileModel(String filename, String filetype, String filePath) {
         this.filename = filename;
         this.filetype = filetype;
-        this.data = data;
+        this.filePath = filePath;
     }
 
     public FileModel(String filename, String filetype, byte[] data) {
@@ -35,18 +35,13 @@ public class FileModel {
         this.data = data;
     }
 
-    public FileModel() {
-    }
-
-    public String idToString(){ return id.toString(); }
+    public FileModel() {}
 
     public Long getId() {
         return id;
     }
 
-    public void setId(Long id) {
-        this.id = id;
-    }
+    public void setId(Long id) { this.id = id; }
 
     public String getFilename() {
         return filename;
@@ -60,17 +55,13 @@ public class FileModel {
         return filetype;
     }
 
-    public void setFiletype(String filetype) {
-        this.filetype = filetype;
-    }
-
     public byte[] getData() {
         return data;
     }
 
-    public void setData(byte[] data) {
-        this.data = data;
-    }
+    public String getFilePath() { return filePath; }
+
+    public void setFilePath(String filePath) { this.filePath = filePath;}
 
     @Override
     public String toString() {
