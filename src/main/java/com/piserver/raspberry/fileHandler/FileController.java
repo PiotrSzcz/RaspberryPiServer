@@ -3,7 +3,6 @@ package com.piserver.raspberry.fileHandler;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.ByteArrayResource;
 import org.springframework.core.io.Resource;
-import org.springframework.core.io.UrlResource;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.MediaType;
@@ -12,8 +11,6 @@ import org.springframework.web.bind.annotation.*;
 import org.springframework.web.multipart.MultipartFile;
 import java.io.File;
 import java.io.IOException;
-import java.net.URI;
-import java.nio.file.Path;
 import java.time.LocalDateTime;
 
 import static java.time.format.DateTimeFormatter.ISO_LOCAL_TIME;
@@ -27,7 +24,7 @@ public class FileController {
     private FileService fileService;
 
     @PostMapping("/uploadDB")
-    public ResponseEntity uploadToDB(@RequestParam("file") MultipartFile file) throws IOException {
+    public ResponseEntity<?> uploadToDB(@RequestParam("file") MultipartFile file) throws IOException {
         fileService.storeFileInDB(file);
         return ResponseEntity.ok().body("Plik zapisany: " + file.getOriginalFilename());
     }

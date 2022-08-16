@@ -3,10 +3,21 @@
 <head>
   <meta charset="UTF-8">
   <title>FileList</title>
+  <style>
+        .fileList{
+            font-size: 20px;
+         }
+         @media screen and (max-width: 1000px) {
+            .fileList {
+                font-size: 40px;
+            }
+         }
+  </style>
 </head>
 <body>
+  <br>
   <tr th:each="file: ${files}">
-    <a th:href="@{'download/'+${file.getId}}"> <td th:text="${file.getFilename}"/> </a>
+    <a th:href="@{'download/'+${file.getId}}" class="fileList"> <td th:text="${file.getFilename}"/> </a>
     <br>
   </tr>
 </body>
